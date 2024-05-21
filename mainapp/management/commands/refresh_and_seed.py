@@ -46,10 +46,9 @@ class Command(BaseCommand):
         for _ in range(5):
             order = Order.objects.create(
                 user=user,
-                total_price=0,  # We will update this later
-                payment_information="Test Payment Information"
+                total_amount=0,  # Update to total_amount
             )
-            total_price = 0
+            total_amount = 0  # Update to total_amount
             for _ in range(random.randint(1, 5)):
                 product = random.choice(products)
                 quantity = random.randint(1, 3)
@@ -58,7 +57,8 @@ class Command(BaseCommand):
                     product=product,
                     quantity=quantity
                 )
-                total_price += product.price * quantity
+                total_amount += product.price * quantity  # Update to total_amount
             
-            order.total_price = round(total_price, 2)
+            order.total_amount = round(total_amount, 2)  # Update to total_amount
             order.save()
+
