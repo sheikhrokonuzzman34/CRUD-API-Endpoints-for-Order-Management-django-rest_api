@@ -32,8 +32,8 @@ python manage.py test
 ## Base URL
 - All endpoints are relative to the base URL: `https://example.com/api/`
 
-## Authentication
-- The API requires authentication using [Token Authentication](https://www.django-rest-framework.org/api-guide/authentication/#tokenauthentication).
+## Authentication simplejwt
+- The API requires authentication using [Token Authentication](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/getting_started.html).
 
 ---
 
