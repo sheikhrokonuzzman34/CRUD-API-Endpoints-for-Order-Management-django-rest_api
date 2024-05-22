@@ -1,7 +1,8 @@
+# mainapp/management/commands/seed_db.py
 import random
 from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User
-from mainapp.models import Product, Order, OrderItem  # Adjust the import based on your actual models location
+from mainapp.models import Product, Order, OrderItem
 
 class Command(BaseCommand):
     help = 'Refresh the database and seed with dummy data'
@@ -36,19 +37,17 @@ class Command(BaseCommand):
             products.append(product)
         
         self.stdout.write("Creating or getting dummy user...")
-        user, created = User.objects.get_or_create(username='testuser', defaults={'password': 'password'})
-        if created:
-            self.stdout.write("Dummy user created.")
-        else:
-            self.stdout.write("Dummy user already exists.")
-
+        user = User.objects.create_user(username='testuser')
+        user.set_password('123456')  # Set the password
+        user.save()
+        
         self.stdout.write("Creating dummy orders...")
         for _ in range(5):
             order = Order.objects.create(
                 user=user,
-                total_amount=0,  # Update to total_amount
+                payment_info='Dummy payment info',
             )
-            total_amount = 0  # Update to total_amount
+            total_amount = 0
             for _ in range(random.randint(1, 5)):
                 product = random.choice(products)
                 quantity = random.randint(1, 3)
@@ -57,8 +56,7 @@ class Command(BaseCommand):
                     product=product,
                     quantity=quantity
                 )
-                total_amount += product.price * quantity  # Update to total_amount
+                total_amount += product.price * quantity
             
-            order.total_amount = round(total_amount, 2)  # Update to total_amount
+            order.total_amount = round(total_amount, 2)
             order.save()
-

@@ -1,5 +1,6 @@
+# serializers.py
 from rest_framework import serializers
-from .models import Order, OrderItem, Product
+from .models import Product, Order, OrderItem
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
@@ -7,39 +8,15 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class OrderItemSerializer(serializers.ModelSerializer):
-    product = ProductSerializer()
-
+    product = ProductSerializer(read_only=True)
+    
     class Meta:
         model = OrderItem
-        fields = '__all__'
+        fields = ['id', 'product', 'quantity']
 
 class OrderSerializer(serializers.ModelSerializer):
-    items = OrderItemSerializer(many=True)
-
+    items = OrderItemSerializer(source='orderitem_set', many=True, read_only=True)
+    
     class Meta:
         model = Order
-        fields = '__all__'
-
-    def create(self, validated_data):
-        items_data = validated_data.pop('items')
-        order = Order.objects.create(**validated_data)
-        for item_data in items_data:
-            product_data = item_data.pop('product')
-            product, _ = Product.objects.get_or_create(**product_data)
-            OrderItem.objects.create(order=order, product=product, **item_data)
-        return order
-
-    def update(self, instance, validated_data):
-        items_data = validated_data.pop('items')
-        instance.user = validated_data.get('user', instance.user)
-        instance.total_amount = validated_data.get('total_amount', instance.total_amount)
-        instance.save()
-
-        for item_data in items_data:
-            product_data = item_data.pop('product')
-            product, _ = Product.objects.get_or_create(**product_data)
-            order_item, created = OrderItem.objects.get_or_create(order=instance, product=product)
-            order_item.quantity = item_data.get('quantity', order_item.quantity)
-            order_item.save()
-
-        return instance
+        fields = ['id', 'user', 'payment_info', 'created_at', 'updated_at', 'delivery_status', 'payment_status', 'total_amount', 'items']
