@@ -62,7 +62,7 @@ python manage.py test
 - **Headers:** Authorization Bearer token
 - **Response:**
   - Status Code: 201 Created
-  - Content: Newly created department data.
+  - Content: products data.
 
 ### Retrieve, Update, Delete products
 - **URL:** `GET/PUT/PATCH/DELETE /products/{products_id}/`
@@ -70,7 +70,7 @@ python manage.py test
 - **Authentication:** Required
 - **Response:**
   - Status Code: 200 OK (for GET), 200 OK (for PUT/PATCH), 204 No Content (for DELETE)
-  - Content: Department data.
+  - Content: products data.
 
 ---
 
@@ -82,7 +82,7 @@ python manage.py test
 - **Authentication:** Required
 - **Response:**
   - Status Code: 200 OK
-  - Content: List of employees in the system.
+  - Content: List of Orders in the system.
 
 ### Create orders
 - **URL:** `POST /orders/`
@@ -92,7 +92,7 @@ python manage.py test
   - Body: (id, user, payment_info, created_at,updated_at,delivery_status,total_amount,items:{"id":1},product:{"id":2},quantity).
 - **Response:**
   - Status Code: 201 Created
-  - Content: Newly created employee data.
+  - Content: Newly created Orders data.
 
 ### Retrieve, Update, Delete order_detail
 - **URL:** `GET/PUT/PATCH/DELETE /orders/{orders_id}/`
@@ -100,7 +100,7 @@ python manage.py test
 - **Authentication:** Required
 - **Response:**
   - Status Code: 200 OK (for GET), 200 OK (for PUT/PATCH), 204 No Content (for DELETE)
-  - Content: Employee data.
+  - Content: Orders data.
 
 ---
 
