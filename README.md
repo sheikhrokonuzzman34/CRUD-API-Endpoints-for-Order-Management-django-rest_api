@@ -1,10 +1,10 @@
-# Employee Records Management & Analytics Service
+# Order Management Service
 
-This Django-based API manages employee records and provides analytical insights.
+This Django-based API manages Order-Management.
 
 ## Git clone
    ```bash
-   git clone https://github.com/sheikhrokonuzzman34/Employee-Records-Management-Analytics-Service.git
+   git clone https://github.com/sheikhrokonuzzman34/CRUD-API-Endpoints-for-Order-Management-django-rest_api.git
 
    ``` 
 
@@ -14,9 +14,11 @@ This Django-based API manages employee records and provides analytical insights.
 1. virtual environment Crete : `python -m venv env`
 2. virtual environment active : `. env/Scripts/activate`
 3. Install dependencies: `pip install -r requirements.txt`
-4. file directory change : `cd Employee-Records-Management-Analytics-Service/`
-5. Apply migrations: `python manage.py migrate`
-6. Run the server: `python manage.py runserver`
+4. file directory change : `cd CRUD-API-Endpoints-for-Order-Management-django-rest_api/`
+5. Apply makemigrations: `python manage.py makemigrations`
+6. Apply migrations: `python manage.py migrate`
+7. Apply refresh_and_seed: `python manage.py refresh_and_seed`
+8. Run the server: `python manage.py runserver`
 
 ## Testing
 
@@ -35,37 +37,36 @@ python manage.py test
 
 ---
 
-## django default database
-- django default database URL: `http://127.0.0.1:8000/admin/`
+## Fake generator user
+-
   ```text
-  username : 'adminR'
-  password : '123zxc123'
+  username : 'testuser'
+  password : '123456'
   ```
 
 
-## Department Endpoints
+## Authentication Endpoints
 
-### List Departments
-- **URL:** `GET /departments/`
-- **Description:** Get a list of all departments.
-- **Authentication:** Required
+### Token Authentication
+- **URL:** `POST /token/`
+- **Description:** Get refres and access token.
+- **Description:** Body username and password
 - **Response:**
   - Status Code: 200 OK
-  - Content: List of departments in the system.
+  
 
-### Create Department
-- **URL:** `POST /departments/`
-- **Description:** Create a new department.
+### List products
+- **URL:** `POST /products/`
+- **Description:** List products.
 - **Authentication:** Required
-- **Request:**
-  - Body: Department data (name).
+- **Headers:** Authorization Bearer token
 - **Response:**
   - Status Code: 201 Created
   - Content: Newly created department data.
 
-### Retrieve, Update, Delete Department
-- **URL:** `GET/PUT/PATCH/DELETE /departments/{department_id}/`
-- **Description:** Get, update, or delete a specific department by ID.
+### Retrieve, Update, Delete products
+- **URL:** `GET/PUT/PATCH/DELETE /products/{products_id}/`
+- **Description:** Get, update, or delete a specific products by ID.
 - **Authentication:** Required
 - **Response:**
   - Status Code: 200 OK (for GET), 200 OK (for PUT/PATCH), 204 No Content (for DELETE)
@@ -73,29 +74,29 @@ python manage.py test
 
 ---
 
-## Employee Endpoints
+## Orders Endpoints
 
-### List Employees
-- **URL:** `GET /employees/`
-- **Description:** Get a list of all employees.
+### List orders
+- **URL:** `GET /orders/`
+- **Description:** Get a list of all orders.
 - **Authentication:** Required
 - **Response:**
   - Status Code: 200 OK
   - Content: List of employees in the system.
 
-### Create Employee
-- **URL:** `POST /employees/`
-- **Description:** Create a new employee.
+### Create orders
+- **URL:** `POST /orders/`
+- **Description:** Create a new orders.
 - **Authentication:** Required
 - **Request:**
-  - Body: Employee data (name, department, tenure, hire_date).
+  - Body: (id, user, payment_info, created_at,updated_at,delivery_status,total_amount,items:{"id":1},product:{"id":2},quantity).
 - **Response:**
   - Status Code: 201 Created
   - Content: Newly created employee data.
 
-### Retrieve, Update, Delete Employee
-- **URL:** `GET/PUT/PATCH/DELETE /employees/{employee_id}/`
-- **Description:** Get, update, or delete a specific employee by ID.
+### Retrieve, Update, Delete order_detail
+- **URL:** `GET/PUT/PATCH/DELETE /orders/{orders_id}/`
+- **Description:** Get, update, or delete a specific orders by ID.
 - **Authentication:** Required
 - **Response:**
   - Status Code: 200 OK (for GET), 200 OK (for PUT/PATCH), 204 No Content (for DELETE)
@@ -103,17 +104,7 @@ python manage.py test
 
 ---
 
-## Analytics Endpoints
 
-### Employee Analytics
-- **URL:** `GET /analytics/`
-- **Description:** Get analytical data such as employee count by department, average tenure, and more.
-- **Authentication:** Required
-- **Response:**
-  - Status Code: 200 OK
-  - Content: Analytical data.
-
----
 
 ## Error Responses
 - The API may return the following error responses:
@@ -126,7 +117,7 @@ python manage.py test
 ---
 
 ## Versioning
-- This documentation is for version 1 of the Employee Management API.
+- This documentation is for version 1 of the Order-Management API.
 
 ---
 
