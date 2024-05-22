@@ -50,7 +50,7 @@ python manage.py test
 ### Token Authentication
 - **URL:** `POST /token/`
 - **Description:** Get refres and access token.
-- **Description:** Body username and password
+- **Body:**  username and password
 - **Response:**
   - Status Code: 200 OK
   
