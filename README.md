@@ -1,4 +1,4 @@
-# Order Management Service
+# Order Management System
 
 This Django-based API manages Order-Management.
 
