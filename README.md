@@ -53,13 +53,23 @@ python manage.py test
 - **Body:**  username and password
 - **Response:**
   - Status Code: 200 OK
-  
+
 
 ### List products
+- **URL:** `GET /products/`
+- **Description:** Get a list of all products.
+- **Authentication:** Required
+- **Response:**
+  - Status Code: 200 OK
+  - Content: List of Orders in the system.
+  
+
+### Create products
 - **URL:** `POST /products/`
-- **Description:** List products.
+- **Description:** Create products.
 - **Authentication:** Required
 - **Headers:** Authorization Bearer token
+- **Body:** { id , name , price}
 - **Response:**
   - Status Code: 201 Created
   - Content: products data.
@@ -89,7 +99,7 @@ python manage.py test
 - **Description:** Create a new orders.
 - **Authentication:** Required
 - **Request:**
-  - Body: (id, user, payment_info, created_at,updated_at,delivery_status,payment_status,total_amount, "items": [
+  - Body: (id, user, payment_info, created_at, updated_at, delivery_status, payment_status, total_amount, "items": [
         {
             "id": 1,
             "product": {
