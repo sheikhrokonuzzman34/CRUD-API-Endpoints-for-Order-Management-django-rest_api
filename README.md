@@ -17,7 +17,7 @@ This Django-based API manages Order-Management.
 4. file directory change : `cd CRUD-API-Endpoints-for-Order-Management-django-rest_api/`
 5. Apply makemigrations: `python manage.py makemigrations`
 6. Apply migrations: `python manage.py migrate`
-7. Apply refresh_and_seed: `python manage.py refresh_and_seed`
+7. Fake data generate: `python manage.py refresh_and_seed`
 8. Run the server: `python manage.py runserver`
 
 ## Testing
