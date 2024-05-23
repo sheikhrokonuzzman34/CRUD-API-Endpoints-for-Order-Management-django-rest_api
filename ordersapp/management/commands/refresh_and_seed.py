@@ -2,7 +2,7 @@
 import random
 from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User
-from mainapp.models import Product, Order, OrderItem
+from ordersapp.models import Product, Order, OrderItem
 
 class Command(BaseCommand):
     help = 'Refresh the database and seed with dummy data'
