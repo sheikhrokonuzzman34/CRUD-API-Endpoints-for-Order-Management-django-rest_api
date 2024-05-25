@@ -99,16 +99,16 @@ python manage.py test
 - **Description:** Create a new orders.
 - **Authentication:** Required
 - **Request:**
-  - Body: (id, user, payment_info, created_at, updated_at, delivery_status, payment_status, total_amount, "items": [
+  - Body: {
+    "payment_info": "Dummy payment info",
+    "total_amount": "250.32",
+    "items": [
         {
-            "id": 1,
-            "product": {
-                "id": 4,
-                "name": "Product 4",
-                "price": "67.11"
-            },
+            "product": 3,
             "quantity": 3
-        }]).
+        }
+    ]
+}
 - **Response:**
   - Status Code: 201 Created
   - Content: Newly created Orders data.
